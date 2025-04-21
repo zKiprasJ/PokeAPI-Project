@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "newman run pokeapi-tests.postman_collection.json -e pokeapi-env.postman_environment.json -r cli -r html -r json --reporter-html-export newman-report.html --reporter-json-export newman-report.json"
+    "test": "newman run PokeAPI/pokeapi-tests.postman_collection.json -e PokeAPI/pokeapi-env.postman_environment.json -r cli,html,json --reporter-html-export newman-report.html --reporter-json-export newman-report.json"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs"
 }
+
