@@ -34,14 +34,14 @@ cd pokeapi-testing
 ## 🧙 Test Design
 Tests are organized into logical scenarios such as:
 
-Valid/invalid Pokémon data
-Type matching
-Error response testing
-Edge case handling
-Intentional failure scenarios (to test robustness)
-Each request includes relevant:
-Pre-request scripts (like setting environment vars)
-Post-request test scripts using pm.test() assertions
+-Valid/invalid Pokémon data
+-Type matching
+-Error response testing
+-Edge case handling
+-Intentional failure scenarios (to test robustness)
+-Each request includes relevant:
+-Pre-request scripts (like setting environment vars)
+-Post-request test scripts using pm.test() assertions
 
 ## 🚀 CI/CD: GitHub Actions
 Every time code is pushed to main, the test suite runs automatically via GitHub Actions.
