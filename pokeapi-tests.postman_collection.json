@@ -1,0 +1,443 @@
+{
+	"info": {
+		"_postman_id": "a04e712e-5d9e-4ae0-9ce3-75a743bc04fc",
+		"name": "PokeAPI Testing",
+		"description": "_“API testing collection for PokeAPI using Postman & Newman”_",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "41740824",
+		"_collection_link": "https://one-man-army-5088.postman.co/workspace/PokeAPI-Testing~dce56231-b0b1-417e-a502-e4e9f21ae6f1/collection/41740824-a04e712e-5d9e-4ae0-9ce3-75a743bc04fc?action=share&source=collection_link&creator=41740824"
+	},
+	"item": [
+		{
+			"name": "1.Get Pokémon by ID",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Name is bulbasaur\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.name).to.eql(\"bulbasaur\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response contains 'types', 'abilities'\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json).to.have.property(\"types\");\r",
+							"    pm.expect(json).to.have.property(\"abilities\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pokemon/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pokemon",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "2.Invalid Pokémon ID (Failing Test)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 404 for invalid ID\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pokemon/99999",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pokemon",
+						"99999"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "3.Get Pokémon by Name",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pikachu's ID is 25\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.id).to.eql(25);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Pikachu's type includes electric\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    const types = json.types.map(t => t.type.name);\r",
+							"    pm.expect(types).to.include(\"electric\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pokemon/pikachu",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pokemon",
+						"pikachu"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "4.Random Pokémon ID (Pre-request Script)",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"const id = Math.floor(Math.random() * 1000) + 1;\r",
+							"pm.environment.set(\"pokeId\", id);"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200 for random Pokémon\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Random Pokémon has name\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.name).to.be.a(\"string\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pokemon/{{pokeId}}",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pokemon",
+						"{{pokeId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "5.Type Info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Type is flying\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.name).to.eql(\"flying\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Damage relations are an object\", function () {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.damage_relations).to.be.an(\"object\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/type/3",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"type",
+						"3"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "6. Pokémon Species",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Species name is bulbasaur\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.name).to.eql(\"bulbasaur\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Color is green\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.color.name).to.eql(\"green\");\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pokemon-species/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pokemon-species",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "7.Pokémon Move – One Failing Test",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Move name is pound\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.name).to.eql(\"pound\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Accuracy is a number\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.accuracy).to.be.a(\"number\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Move power is greater than 100\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.power).to.be.above(100); // Pound has power = 40\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/move/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"move",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "8. Evolution Chain",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Base Pokémon is bulbasaur\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.chain.species.name).to.eql(\"bulbasaur\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Has at least 2 evolution stages\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    const stage1 = json.chain.evolves_to[0];\r",
+							"    const stage2 = stage1?.evolves_to[0];\r",
+							"    pm.expect(stage1).to.not.be.undefined;\r",
+							"    pm.expect(stage2).to.not.be.undefined;\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/evolution-chain/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"evolution-chain",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "9. Pokémon Form",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status is 200\", () => {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Form name is pikachu\", () => {\r",
+							"    const json = pm.response.json();\r",
+							"    pm.expect(json.name).to.eql(\"pikachu\");\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Returns 404 for invalid form ID\", () => {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pokemon-form/25",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pokemon-form",
+						"25"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "10. Response Timing Example",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Response time is under 1000ms\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(1000);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Response time is lightning fast (under 10ms)\", () => {\r",
+							"    pm.expect(pm.response.responseTime).to.be.below(10); // Fails, but sounds reasonable\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{baseUrl}}/pokemon/1",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"pokemon",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
