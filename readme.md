@@ -30,7 +30,7 @@ Welcome! This project is a fully automated API testing suite created for the [Po
 ```bash
 git clone https://github.com/your-username/pokeapi-testing.git
 cd pokeapi-testing
-
+```
 🧙 Test Design
 Tests are organized into logical scenarios such as:
 
