@@ -36,40 +36,40 @@ Tests are organized into logical scenarios such as:
 
 Valid/invalid Pokémon data<br>
 Type matching<br>
-Error response testing
-Edge case handling
-Intentional failure scenarios (to test robustness)
-Each request includes relevant:
-Pre-request scripts (like setting environment vars)
-gitPost-request test scripts using pm.test() assertions
+Error response testing<br>
+Edge case handling<br>
+Intentional failure scenarios (to test robustness)<br>
+Each request includes relevant:<br>
+Pre-request scripts (like setting environment vars)<br>
+gitPost-request test scripts using pm.test() assertions<br>
 
 ## 🚀 CI/CD: GitHub Actions
-Every time code is pushed to main, the test suite runs automatically via GitHub Actions.
+Every time code is pushed to main, the test suite runs automatically via GitHub Actions.<br>
 Check it under the "Actions" tab in your GitHub repository.
 
 Workflow file: .github/workflows/run-tests.yml
 
 ## 📁 Project Structure
-PokeAPI/
-├── .github/workflows/run-tests.yml      # GitHub Actions workflow
-├── pokeapi-tests.postman_collection.json # Main Postman test collection
-├── pokeapi-env.postman_environment.json # Environment variables
-├── newman-report.html                   # HTML test report
-├── newman-report.json                   # JSON test report
-├── .gitignore                           # Ignore node_modules & reports
-├── package.json                         # Project config + test script
-└── README.md                            # You're reading it! 📖
+PokeAPI/<br>
+├── .github/workflows/run-tests.yml      # GitHub Actions workflow<br>
+├── pokeapi-tests.postman_collection.json # Main Postman test collection<br>
+├── pokeapi-env.postman_environment.json # Environment variables<br>
+├── newman-report.html                   # HTML test report<br>
+├── newman-report.json                   # JSON test report<br>
+├── .gitignore                           # Ignore node_modules & reports<br>
+├── package.json                         # Project config + test script<br>
+└── README.md                            # You're reading it! 📖<br>
 
 ## 👨‍🏫 Notes for Lecturer
-Lecturer GitHub username: Dailius (invited as a collaborator).
+Lecturer GitHub username: Dailius (invited as a collaborator).<br>
 Tests were designed with a mix of success and failure to simulate real-world quality assurance practices.
 
 ## 🧠 Author
-Kipras
+Kipras<br>
 Just a guy who likes clean test cases, catching bugs, and Pikachu.
 
 ## 🐛 Known Issues / Fun Glitches
-Some tests are meant to fail.
+Some tests are meant to fail.<br>
 The PokeAPI sometimes returns 404s for made-up Pokémon — which we fully embrace for test coverage 🎯
 
 ## 🏁 Done & Dusted
