@@ -55,7 +55,6 @@ PokeAPI/<br>
 ├── .github/workflows/run-tests.yml      # GitHub Actions workflow<br>
 ├── pokeapi-tests.postman_collection.json # Main Postman test collection<br>
 ├── pokeapi-env.postman_environment.json # Environment variables<br>
-├── newman-report.html                   # HTML test report<br>
 ├── newman-report.json                   # JSON test report<br>
 ├── .gitignore                           # Ignore node_modules & reports<br>
 ├── package.json                         # Project config + test script<br>
