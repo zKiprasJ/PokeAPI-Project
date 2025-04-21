@@ -1,8 +1,6 @@
 # 🧪 PokeAPI Testing Project with Postman, Newman, and GitHub Actions
 
-Welcome! This project is a fully automated API testing suite created for the [PokeAPI](https://pokeapi.co), using **Postman**, **Newman**, and **GitHub Actions**. It was made for a university assignment (and a little bit for fun too 😎).
-
-## 📦 What's Inside?
+Welcome! This project is a fully automated API testing suite created for the [PokeAPI](https://pokeapi.co), using **Postman**, **Newman**, and **GitHub Actions**.
 
 - ✅ **10 API testing scenarios**
 - ✅ **15+ individual test cases**
@@ -10,7 +8,6 @@ Welcome! This project is a fully automated API testing suite created for the [Po
 - ✅ **Newman HTML & JSON reports**
 - ✅ **Environment-based URL handling**
 - ✅ **Automated test pipeline via GitHub Actions**
-- ✅ **Mix of passing and intentionally failing test cases for realism**
 
 ---
 
