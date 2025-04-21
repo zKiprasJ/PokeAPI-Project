@@ -28,8 +28,9 @@ Welcome! This project is a fully automated API testing suite created for the [Po
 1. **Clone the repository:**
 
 ```bash
-git clone https://github.com/your-username/pokeapi-testing.git
-cd pokeapi-testing
+Clone the repository:
+git clone https://github.com/zKiprasJ/PokeAPI-Project.git
+cd PokeAPI-Project
 ```
 ## 🧙 Test Design
 Tests are organized into logical scenarios such as:
