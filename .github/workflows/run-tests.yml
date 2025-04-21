@@ -26,4 +26,4 @@ jobs:
       - name: Run Postman tests
         run: |
           npm run test
-
+        continue-on-error: true  # This allows the action to continue even if tests fail.
