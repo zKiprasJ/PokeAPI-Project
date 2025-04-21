@@ -56,8 +56,10 @@ PokeAPI/<br>
 ├── pokeapi-tests.postman_collection.json # Main Postman test collection<br>
 ├── pokeapi-env.postman_environment.json # Environment variables<br>
 ├── newman-report.json                   # JSON test report<br>
+├── newman-report.html                   # HTML test report<br>
 ├── .gitignore                           # Ignore node_modules & reports<br>
 ├── package.json                         # Project config + test script<br>
+├── package-lock.json                    # Locks Dependencies<br>
 └── README.md                            # You're reading it! 📖<br>
 
 ## 👨‍🏫 Notes for Lecturer
